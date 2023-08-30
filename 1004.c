@@ -1,27 +1,27 @@
 #include <stdio.h>
 
-void numcount(int num, int *n);
 int main(void)
 {
-    int m = 0, n = 0;
-    int numlist[10] = {0};
-    scanf("%d %d", &m, &n);
-    for (int i = m; i <= n; i++)
+    int ch = 0, leftcount = 0, rightcount = 0;
+    while ((ch = getchar()) != '@')
     {
-        numcount(i, &numlist);
+        if (ch == '(')
+        {
+            leftcount += 1;
+        }
+        else if (ch == ')')
+        {
+            rightcount += 1;
+        }
     }
-    for (int i = 0; i < 10; i++)
+    if (leftcount == rightcount)
     {
-        printf("%d ", numlist[i]);
+        printf("YES");
     }
-    return 0;
-}
+    else
+    {
+        printf("NO");
+    }
 
-void numcount(int num, int *n)
-{
-    while (num > 0)
-    {
-        *(n+(num % 10)) += 1;
-        num /= 10;
-    }
+    return 0;
 }
