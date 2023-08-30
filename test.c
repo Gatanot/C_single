@@ -1,34 +1,73 @@
 #include <stdio.h>
-
+int judge(int numlist[]);
 int main(void)
 {
-    int num = 0, printing = 0;
-    scanf("%d", &num);
-
-    if (num == 0)
+    int numlist[9];
+    int num = 0, j = 0;
+    for (int i = 0; i < 9; i++)
     {
-        printing = num;
+        numlist[i] = (-i);
     }
-    else
+    while ((num = getchar()) != '\t')
     {
-        int numlist[num];
-
-        if (num == 1 || num == 2)
+        if (j % 2 == 0)
         {
-            numlist[num - 1] = 1;
-            num = numlist[num - 1];
+            numlist[num] = 1;
         }
         else
         {
-
-            numlist[0] = 1, numlist[1] = 1;
-            for (int i = 2; i < num; i++)
-            {
-                numlist[i] = numlist[i - 1] + numlist[i - 2];
-                printing = numlist[i];
-            }
+            numlist[num] = 2;
+        }
+        j++;
+        if (judge(&numlist[0]) == 1)
+        {
+            printf("xiaoa wins");
+            break;
+        }
+        else if (judge(&numlist[0]) == 2)
+        {
+            printf("uim wins");
+            break;
         }
     }
-    printf("%d.00", printing);
+
     return 0;
+}
+int judge(int numlist[])
+{
+    int ReturnNum = 0;
+    if ((numlist[0] == numlist[1]) && (numlist[1] == numlist[2]))
+    {
+        ReturnNum = numlist[0];
+    }
+    else if ((numlist[3] == numlist[4]) && (numlist[4] == numlist[5]))
+    {
+        ReturnNum = numlist[3];
+    }
+    else if ((numlist[6] == numlist[7]) && (numlist[7] == numlist[8]))
+    {
+        ReturnNum = numlist[6];
+    }
+    else if ((numlist[0] == numlist[4]) && (numlist[4] == numlist[8]))
+    {
+        ReturnNum = numlist[0];
+    }
+    else if ((numlist[2] == numlist[4]) && (numlist[4] == numlist[6]))
+    {
+        ReturnNum = numlist[2];
+    }
+    else if ((numlist[0] == numlist[3]) && (numlist[3] == numlist[6]))
+    {
+        ReturnNum = numlist[0];
+    }
+    else if ((numlist[1] == numlist[4]) && (numlist[4] == numlist[7]))
+    {
+        ReturnNum = numlist[1];
+    }
+    else if ((numlist[2] == numlist[5]) && (numlist[5] == numlist[8]))
+    {
+        ReturnNum = numlist[2];
+    }
+
+    return ReturnNum;
 }
