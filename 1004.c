@@ -1,38 +1,27 @@
 #include <stdio.h>
-int rang(double numlist[]);
+
+void numcount(int num, int *n);
 int main(void)
 {
-    double numlist[10] = {
-        21,
-        324,
-        64,
-        78,
-        32,
-        76,
-        276,
-        23,
-        65,
-        26
-    };
-    printf("%d", rang(numlist));
-}
-int rang(double numlist[])
-{
-    int mark = 0;
-    for (int i = 0; i < 9; i++)
+    int m = 0, n = 0;
+    int numlist[10] = {0};
+    scanf("%d %d", &m, &n);
+    for (int i = m; i <= n; i++)
     {
-        for (int j = 0; j < 9; j++)
-        {
-            if (numlist[i] > numlist[i + 1])
-            {
-                mark = i;
-                int temp = numlist[i + 1];
-                numlist[i + 1] = numlist[i];
-                numlist[i] = temp;
-            }else{
-                mark = i+1;
-            }
-        }
+        numcount(i, &numlist);
     }
-    return mark;
+    for (int i = 0; i < 10; i++)
+    {
+        printf("%d ", numlist[i]);
+    }
+    return 0;
+}
+
+void numcount(int num, int *n)
+{
+    while (num > 0)
+    {
+        *(n+(num % 10)) += 1;
+        num /= 10;
+    }
 }
