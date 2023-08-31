@@ -28,9 +28,6 @@ int rang(int numlist[])
                 numlist[j + 1] = numlist[j];
                 numlist[j] = temp;
             }
-            else
-            {
-            }
         }
     }
     return 0;
