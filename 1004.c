@@ -1,38 +1,38 @@
 #include <stdio.h>
-
-int numcount(char ch);
+int rang(int numlist[]);
 int main(void)
 {
-    int ch = 0, sum = 0;
-    while ((ch = getchar()) != '\t')
-    {
-        sum += numcount((char)ch)
-    }
-
-    printf("%d", sum);
-
-    return 0;
+    int numlist[10] = {
+        21,
+        324,
+        64,
+        78,
+        32,
+        76,
+        276,
+        23,
+        65,
+        26
+    };
+    printf("%d %d", numlist[9], rang(numlist));
 }
-
-int numcount(char ch)
+int rang(int numlist[])
 {
-    int num = 0;
-    if (ch == 'a' || ch == 'd' || ch == 'g' || ch == 'j' || ch == 'm' || ch == 'p' || ch == 't' || ch == 'w' || ch == ' ')
+    int mark = 0;
+    for (int i = 0; i < 9; i++)
     {
-        num = 1;
+        for (int j = 0; j < 9-i; j++)
+        {
+            if (numlist[j] > numlist[j + 1])
+            {
+                int temp = numlist[j + 1];
+                numlist[j + 1] = numlist[j];
+                numlist[j] = temp;
+                mark = j;
+            }else{
+                mark = j+1;
+            }
+        }
     }
-    else if (ch == 'b' || ch == 'e' || ch == 'h' || ch == 'k' || ch == 'n' || ch == 'q' || ch == 'u' || ch == 'x')
-    {
-        num = 2;
-    }
-    else if (ch == 'c' || ch == 'f' || ch == 'i' || ch == 'l' || ch == 'o' || ch == 'q' || ch == 'v' || ch == 'y')
-    {
-        num = 3
-    }
-    else if (ch == 's' || ch == 'z')
-    {
-        num = 4;
-    }
-
-    return num;
+    return mark;
 }

@@ -6,7 +6,7 @@ int main(void)
     int ch = 0, sum = 0;
     while ((ch = getchar()) != '\t')
     {
-        sum += numcount((char)ch)
+        sum += numcount((char)ch);
     }
 
     printf("%d", sum);
@@ -27,7 +27,7 @@ int numcount(char ch)
     }
     else if (ch == 'c' || ch == 'f' || ch == 'i' || ch == 'l' || ch == 'o' || ch == 'q' || ch == 'v' || ch == 'y')
     {
-        num = 3
+        num = 3;
     }
     else if (ch == 's' || ch == 'z')
     {
