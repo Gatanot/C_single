@@ -1,38 +1,40 @@
 #include <stdio.h>
 
-int numcount(char ch);
 int main(void)
 {
-    int ch = 0, sum = 0;
-    while ((ch = getchar()) != '\t')
+    int n = 0, sum = 0;
+    sum = 0;
+    scanf("%d", &n);
+    double a[n], t[n];
+    for (int i = 0; i < n; i++)
     {
-        sum += numcount((char)ch);
+        scanf("%lf %lf", &a[i], &t[i]);
+        if (((int)(a[i] * t[i])) > sum)
+        {
+            sum = ((int)(a[i] * t[i]));
+        }
+    }
+    int numlsit[sum];
+    for (int i = 0; i < sum; i++)
+    {
+        numlsit[i] = 0;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 1; i < t[i]; i++)
+        {
+            numlsit[((int)a[i] * j)] += 1;
+        }
     }
 
-    printf("%d", sum);
+    for (int i = 0; i < sum; i++)
+    {
+        if (numlsit[i] % 2 == 1)
+        {
+            printf("%d", i + 1);
+            break;
+        }
+    }
 
     return 0;
-}
-
-int numcount(char ch)
-{
-    int num = 0;
-    if (ch == 'a' || ch == 'd' || ch == 'g' || ch == 'j' || ch == 'm' || ch == 'p' || ch == 't' || ch == 'w' || ch == ' ')
-    {
-        num = 1;
-    }
-    else if (ch == 'b' || ch == 'e' || ch == 'h' || ch == 'k' || ch == 'n' || ch == 'q' || ch == 'u' || ch == 'x')
-    {
-        num = 2;
-    }
-    else if (ch == 'c' || ch == 'f' || ch == 'i' || ch == 'l' || ch == 'o' || ch == 'q' || ch == 'v' || ch == 'y')
-    {
-        num = 3;
-    }
-    else if (ch == 's' || ch == 'z')
-    {
-        num = 4;
-    }
-
-    return num;
 }
