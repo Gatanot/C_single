@@ -2,37 +2,60 @@
 
 int main(void)
 {
-    int n = 0, sum = 0;
-    sum = 0;
-    scanf("%d", &n);
-    double a[n], t[n];
-    for (int i = 0; i < n; i++)
+
+    int newch = 0, n = 0, count = 1, mark = 0;
+    int numlist[40000] = {0};
+    while ((newch = getchar()) != '\n')
     {
-        scanf("%lf %lf", &a[i], &t[i]);
-        if (((int)(a[i] * t[i])) > sum)
-        {
-            sum = ((int)(a[i] * t[i]));
-        }
+        numlist[++n] = newch;
     }
-    int numlsit[sum];
-    for (int i = 0; i < sum; i++)
+
+    mark = n;
+    for (int i = 1; i <= n - 1; i++)
     {
-        numlsit[i] = 0;
-    }
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 1; i < t[i]; i++)
+        for (int j = 1; j <= n; j++)
         {
-            numlsit[((int)a[i] * j)] += 1;
+            newch = getchar();
+            if (newch == '\n')
+            {
+                continue;
+            }
+            else
+            {
+                numlist[++mark] = newch;
+            }
         }
     }
 
-    for (int i = 0; i < sum; i++)
+    printf("%d ", n);
+    for (int i = 0; i < mark - 1; i++)
     {
-        if (numlsit[i] % 2 == 1)
+
+        if (i == mark - 2)
         {
-            printf("%d", i + 1);
-            break;
+            if (numlist[i] == numlist[i + 1])
+            {
+                count++;
+                printf("%d ", count);
+            }
+            else
+            {
+                printf("%d ", count);
+                printf("1");
+                count = 1;
+            }
+        }
+        else
+        {
+            if (numlist[i] == numlist[i + 1])
+            {
+                count++;
+            }
+            else
+            {
+                printf("%d ", count);
+                count = 1;
+            }
         }
     }
 
