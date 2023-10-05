@@ -1,40 +1,116 @@
 #include <stdio.h>
 
-int main(void)
+int DayCount(int a, int b);
+void printing(int a);
+int main()
 {
-    int n = 0, sum = 0;
-    sum = 0;
-    scanf("%d", &n);
-    double a[n], t[n];
-    for (int i = 0; i < n; i++)
+    int numlist[365][2];
+    int count = 0;
+    for (count = 0; count < 365; count++)
     {
-        scanf("%lf %lf", &a[i], &t[i]);
-        if (((int)(a[i] * t[i])) > sum)
+        scanf("%d %d", &numlist[count][0], &numlist[count][1]);
+        if (numlist[count][0] == 0)
         {
-            sum = ((int)(a[i] * t[i]));
-        }
-    }
-    int numlsit[sum];
-    for (int i = 0; i < sum; i++)
-    {
-        numlsit[i] = 0;
-    }
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 1; i < t[i]; i++)
-        {
-            numlsit[((int)a[i] * j)] += 1;
-        }
-    }
-
-    for (int i = 0; i < sum; i++)
-    {
-        if (numlsit[i] % 2 == 1)
-        {
-            printf("%d", i + 1);
             break;
+        }
+    }
+    for (int i = 0; i < count; i++)
+    {
+        int num = DayCount(numlist[i][0], numlist[i][1]);
+        if (num >= 364 || num == 0)
+        {
+            printf("-1\n");
+        }
+        else
+        {
+            printing(num);
+            printf("\n");
         }
     }
 
     return 0;
+}
+
+int DayCount(int a, int b)
+{
+    int num = 0;
+    switch (a)
+    {
+    case 1:
+        num = 0 + b;
+        break;
+    case 2:
+        num = 31 + b;
+        break;
+    case 3:
+        num = 59 + b;
+        break;
+    case 4:
+        num = 90 + b;
+        break;
+    case 5:
+        num = 120 + b;
+        break;
+    case 6:
+        num = 151 + b;
+        break;
+    case 7:
+        num = 181 + b;
+        break;
+    case 8:
+        num = 212 + b;
+        break;
+    case 9:
+        num = 243 + b;
+        break;
+    case 10:
+        num = 273 + b;
+        break;
+    case 11:
+        num = 304 + b;
+        break;
+    case 12:
+        num = 334 + b;
+        break;
+    default:
+        num = 0;
+        break;
+    }
+    if (b < 1 || b > 31)
+    {
+        num = 0;
+    }
+
+    return num;
+}
+
+void printing(int a)
+{
+    int b = a % 7;
+    switch (b)
+    {
+    case 0:
+        printf("6");
+        break;
+    case 1:
+        printf("5");
+        break;
+    case 2:
+        printf("4");
+        break;
+    case 3:
+        printf("3");
+        break;
+    case 4:
+        printf("2");
+        break;
+    case 5:
+        printf("1");
+        break;
+    case 6:
+        printf("7");
+        break;
+    default:
+        break;
+    }
 }
